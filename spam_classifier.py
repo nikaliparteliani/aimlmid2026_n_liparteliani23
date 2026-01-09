@@ -87,16 +87,24 @@ def main():
     t.add_argument("--csv", required=True, help="Path to CSV dataset")
     t.add_argument("--out", default="model.joblib", help="Output model path")
 
-    p = sub.add_parser("predict", help="Predict from email text")
+    p = sub.add_parser("predict", help="Predict from email text OR from a .txt file")
     p.add_argument("--model", default="model.joblib", help="Path to trained model")
-    p.add_argument("--text", required=True, help="Email text to classify")
+
+    group = p.add_mutually_exclusive_group(required=True)
+    group.add_argument("--text", help="Email text to classify")
+    group.add_argument("--file", help="Path to a .txt file containing the email text")
 
     args = parser.parse_args()
 
     if args.cmd == "train":
         train_model(args.csv, args.out)
     elif args.cmd == "predict":
-        predict_email(args.model, args.text)
+        if args.file:
+            with open(args.file, "r", encoding="utf-8", errors="ignore") as f:
+                email_text = f.read()
+            predict_email(args.model, email_text)
+        else:
+            predict_email(args.model, args.text)
 
 
 if __name__ == "__main__":
