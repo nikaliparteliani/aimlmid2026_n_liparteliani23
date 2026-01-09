@@ -109,30 +109,22 @@ Coef(links) = 0.8133056379063894
 Coef(capital_words) = 0.40498488879274697
 Coef(spam_word_count) = 0.7519649509922152
 Explanation:
-
 Intercept – bias term of the logistic regression model
-
 Coef(words) – impact of total word count
-
 Coef(links) – strong indicator of spam (URLs)
-
 Coef(capital_words) – influence of excessive capitalization
-
 Coef(spam_word_count) – frequency of known spam-related words
 
 Model evaluation
 Confusion matrix and accuracy obtained during training:
-
-
 Confusion Matrix:
 [[366  13]
  [ 18 353]]
 
 Accuracy: 0.9587
+
 Interpretation:
-
 The model correctly classifies ~95.9% of messages
-
 Low false positives and false negatives indicate good performance
 
 Prediction example
@@ -147,11 +139,8 @@ Extracted features:
 Prediction: LEGIT
 Spam probability: 0.00747
 Explanation:
-
 The extracted features are passed to the trained model
-
 Despite spam-like keywords, overall probability is low
-
 Final classification: LEGIT
 
 
