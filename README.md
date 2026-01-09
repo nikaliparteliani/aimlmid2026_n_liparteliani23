@@ -150,6 +150,14 @@ Extracted features: {'words': 34, 'links': 3, 'capital_words': 19, 'spam_word_co
 Prediction: SPAM
 Spam probability: 0.9999999859702835
 
+OR
+
+ python spam_classifier.py predict --model model.joblib --file email.txt
+OUTPUT:
+Extracted features: {'words': 34, 'links': 3, 'capital_words': 19, 'spam_word_count': 22}
+Prediction: SPAM
+Spam probability: 0.9999999859702835
+
 Manually Composed Spam Email (classified as SPAM)
 
 Email text used:
@@ -177,6 +185,7 @@ Spam probability: 0.99999998597
 
 Explanation (2–4 sentences):
 This message was intentionally written to maximize the features that the logistic regression model associates with spam. It contains multiple URLs (links=3), a large number of spam-related keywords (spam_word_count=22), and excessive capitalization (capital_words=19). Since the trained model has strong positive coefficients for these features, the resulting probability of spam is extremely high.
+
 
 
 
