@@ -66,15 +66,17 @@ r = 214.60 / 216.99
 r ≈ 0.989
 ---
 ### ✅ Final result
----
-# in python
+### Pearson correlation in Python
+
+```python
 import numpy as np
 
 x = np.array([-8, -6, -4, -2, -0.5, 2, 4, 6, 8])
 y = np.array([-7, -5, -2, 0.7, 1, 3, 4, 6, 8])
 
 r = np.corrcoef(x, y)[0, 1]
-print('r =',r)
+print("r =", r)
+```
 r = 0.9887186998035012
 
 
