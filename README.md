@@ -83,6 +83,7 @@ r = 0.9887186998035012
 
 ## Spam Classifier – Training and Evaluation
 
+
 ### Environment setup
 
 Create and activate a virtual environment, then install required dependencies:
@@ -142,6 +143,43 @@ Explanation:
 The extracted features are passed to the trained model
 Despite spam-like keywords, overall probability is low
 Final classification: LEGIT
+
+ python spam_classifier.py predict --model model.joblib --text 'URGENT WINNER FREE PRIZE CASH BONUS CLICK NOW to claim your FREE MONEY OFFER http://bad-site.com http://claim-prize.com https://bonus-cash.com LIMITED OFFER ACT NOW GUARANTEED WIN CASH FREE'
+OUTPUT:
+Extracted features: {'words': 34, 'links': 3, 'capital_words': 19, 'spam_word_count': 22}
+Prediction: SPAM
+Spam probability: 0.9999999859702835
+
+Manually Composed Spam Email (classified as SPAM)
+
+Email text used:
+
+URGENT WINNER FREE PRIZE CASH BONUS CLICK NOW to claim your FREE MONEY OFFER
+http://bad-site.com http://claim-prize.com https://bonus-cash.com
+LIMITED OFFER ACT NOW GUARANTEED WIN CASH FREE
+
+
+Extracted features (from the console app):
+
+words = 34
+
+links = 3
+
+capital_words = 19
+
+spam_word_count = 22
+
+Model output:
+
+Prediction: SPAM
+
+Spam probability: 0.99999998597
+
+Explanation (2–4 sentences):
+This message was intentionally written to maximize the features that the logistic regression model associates with spam. It contains multiple URLs (links=3), a large number of spam-related keywords (spam_word_count=22), and excessive capitalization (capital_words=19). Since the trained model has strong positive coefficients for these features, the resulting probability of spam is extremely high.
+
+
+
 
 
 
