@@ -81,8 +81,78 @@ r = 0.9887186998035012
 
 
 
-### Spam email detection
+## Spam Classifier – Training and Evaluation
 
+### Environment setup
+
+Create and activate a virtual environment, then install required dependencies:
+
+```bash
+nano spam_classifier.py
+python -m venv venv
+source venv/bin/activate
+pip install pandas scikit-learn joblib matplotlib
+Model training
+Train the spam classifier using the provided CSV dataset and save the trained model:
+
+bash
+
+python spam_classifier.py train --csv n_liparteliani23_48213.csv --out model.joblib
+Output:
+
+
+Saved model to: model.joblib
+
+Intercept: -8.821537266184123
+Coef(words) = 0.006640196452056835
+Coef(links) = 0.8133056379063894
+Coef(capital_words) = 0.40498488879274697
+Coef(spam_word_count) = 0.7519649509922152
+Explanation:
+
+Intercept – bias term of the logistic regression model
+
+Coef(words) – impact of total word count
+
+Coef(links) – strong indicator of spam (URLs)
+
+Coef(capital_words) – influence of excessive capitalization
+
+Coef(spam_word_count) – frequency of known spam-related words
+
+Model evaluation
+Confusion matrix and accuracy obtained during training:
+
+
+Confusion Matrix:
+[[366  13]
+ [ 18 353]]
+
+Accuracy: 0.9587
+Interpretation:
+
+The model correctly classifies ~95.9% of messages
+
+Low false positives and false negatives indicate good performance
+
+Prediction example
+Run inference on a custom input message:
+
+python spam_classifier.py predict --model model.joblib --text "FREE PRIZEls! click http://bad-site.com NOW"
+
+Output:
+Extracted features:
+{'words': 8, 'links': 1, 'capital_words': 2, 'spam_word_count': 3}
+
+Prediction: LEGIT
+Spam probability: 0.00747
+Explanation:
+
+The extracted features are passed to the trained model
+
+Despite spam-like keywords, overall probability is low
+
+Final classification: LEGIT
 
 
 
